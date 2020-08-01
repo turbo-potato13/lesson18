@@ -8,12 +8,21 @@ INSERT INTO customer (name) VALUES
 ('Willis B.');
 
 DROP TABLE IF EXISTS product CASCADE;
-CREATE TABLE product (id bigserial PRIMARY KEY, title VARCHAR(255), price int, customer_id bigint, FOREIGN KEY (customer_id) REFERENCES customer (id));
+CREATE TABLE product (id bigserial PRIMARY KEY, title VARCHAR(255), price int);
 INSERT INTO product (title, price, customer_id) VALUES
-('box', 10, 1),
-('sphere', 20, 1),
-('maul', 100, 2),
-('door', 50, 1),
-('camera', 500, 3);
+('box', 10),
+('sphere', 20),
+('maul', 100),
+('door', 50),
+('camera', 500);
+
+DROP TABLE IF EXISTS product CASCADE;
+CREATE TABLE buy ( id BIGSERIAL PRIMARY KEY, customer_id  INTEGER REFERENCES customer (id) ON DELETE CASCADE, product_id INTEGER REFERENCES product (id) ON DELETE CASCADE);
+INSERT INTO product (customer_id, product_id) VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(1, 4),
+(3, 5);
 
 COMMIT;

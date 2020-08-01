@@ -8,18 +8,13 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        PrepareDataApp.forcePrepareData();
-        SessionFactory factory = new Configuration()
-                .configure("hibernate.cfg.xml")
-                .buildSessionFactory();
-
-        Session session = null;
-        session = factory.getCurrentSession();
-
+        PrepareDataApp prepareDataApp = new PrepareDataApp();
+        DbManagement dbManagement = new DbManagement(null, prepareDataApp);
+        Commands commands = new Commands(dbManagement);
         Scanner scanner = new Scanner(System.in);
         String str = scanner.nextLine();
         System.out.println(str);
-        session.beginTransaction();
-        Commands.executor(str, session);
+        commands.executor(str);
+
     }
 }
