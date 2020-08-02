@@ -28,7 +28,7 @@ public class DbManagement {
     }
 
     public Customer getCustomer(String name) {
-        Query query = session.createQuery("SELECT c FROM customer c WHERE c.name = :name", Customer.class);
+        Query query = session.createQuery("SELECT c FROM Customer c WHERE c.name = :name", Customer.class);
         query.setParameter("name", name);
         return (Customer) query.getSingleResult();
     }
@@ -39,7 +39,7 @@ public class DbManagement {
     }
 
     public void deleteConsumer(String name) {
-        Query query = session.createQuery("DELETE FROM customer c WHERE c.name = :name");
+        Query query = session.createQuery("DELETE FROM Customer c WHERE c.name = :name");
         query.setParameter("name", name);
         query.executeUpdate();
     }
@@ -49,7 +49,7 @@ public class DbManagement {
     }
 
     public void deleteProduct(String name) {
-        Query query = session.createQuery("DELETE FROM product p WHERE c.name = :name");
+        Query query = session.createQuery("DELETE FROM Product p WHERE c.name = :name");
         query.setParameter("name", name);
         query.executeUpdate();
     }

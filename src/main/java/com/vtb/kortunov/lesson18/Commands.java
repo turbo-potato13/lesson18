@@ -52,7 +52,7 @@ public class Commands {
 
     public void showConsumersByProductTitle(String title) {
         dbManagement.beginTransaction();
-        Query query = dbManagement.getSession().createQuery("SELECT p FROM product p WHERE p.title = :title", Product.class);
+        Query query = dbManagement.getSession().createQuery("SELECT p FROM Product p WHERE p.title = :title", Product.class);
         query.setParameter("title", title);
         Product product = (Product) query.getSingleResult();
         System.out.println(product.getCustomer().getName());
